@@ -15,7 +15,7 @@
 @implementation FRTLocation
 
 +(instancetype)locationWithCLLocation:(CLLocation *)location forNote:(KCGNote *)note {
-    NSLog(@"eeeeee");
+   
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[FRTLocation entityName]];
     NSPredicate *latitude = [NSPredicate predicateWithFormat:@"abs(latitude) - abs(%lf) < 0.001",
                              location.coordinate.latitude];
@@ -37,7 +37,7 @@
         
 
     }else{
-       
+    
         FRTLocation *loc = [self insertInManagedObjectContext:note.managedObjectContext];
         loc.latitudeValue = location.coordinate.latitude;
         loc.longitudeValue = location.coordinate.longitude;

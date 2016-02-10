@@ -53,10 +53,10 @@
     [self setupKVO];
     
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-
     
-    if (((status == kCLAuthorizationStatusAuthorizedAlways) || (status == kCLAuthorizationStatusNotDetermined))&& [CLLocationManager locationServicesEnabled] ){
-        NSLog(@"dispnemos de seric");
+    if (((status == kCLAuthorizationStatusAuthorizedWhenInUse) || (status == kCLAuthorizationStatusNotDetermined))){
+        //&& [CLLocationManager locationServicesEnabled]
+        NSLog(@"dispnemos de servicio");
         //disponemos de localizacion
         self.locationManger = [CLLocationManager new];
         self.locationManger.delegate = self;
@@ -129,7 +129,8 @@
     
     if (![self hasLocation]) {
        
-        CLLocation *loc = [locations lastObject];
+        CLLocation *loc = [locations firstObject];
+        NSLog(@"%@",loc);
         self.location = [FRTLocation locationWithCLLocation: loc forNote: self];
     }else{
         NSLog(@"No deveriamos estar aqui");
